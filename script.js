@@ -26,4 +26,33 @@ function applyPreferences() {
     }
 }
 
+// Call applyPreferences when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    applyPreferences();
 
+    const form = document.getElementById('customizeForm');
+
+    form.addEventListener('submit', function(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        const name = document.getElementById('nameInput').value;
+        const bgColor = document.getElementById('bgColorInput').value;
+        const fgColor = document.getElementById('fgColorInput').value;
+
+        // Save preferences to localStorage
+        localStorage.setItem('name', name);
+        localStorage.setItem('bgColor', bgColor);
+        localStorage.setItem('fgColor', fgColor);
+
+        // Apply preferences immediately
+        applyPreferences();
+
+        // Show notification
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 2000);
+    });
+});
