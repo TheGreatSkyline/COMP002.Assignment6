@@ -9,3 +9,21 @@
 // also want to call this function again when the user saves their preferences to
 // immediately apply them. Make sure you also notify the user somehow that the preferences
 // were saved.
+// Function to apply preferences from localStorage
+function applyPreferences() {
+    const name = localStorage.getItem('name');
+    const bgColor = localStorage.getItem('bgColor');
+    const fgColor = localStorage.getItem('fgColor');
+
+    if (name) {
+        document.getElementById('greeting').textContent = `Welcome, ${name}!`;
+    }
+    if (bgColor) {
+        document.body.style.backgroundColor = bgColor;
+    }
+    if (fgColor) {
+        document.body.style.color = fgColor;
+    }
+}
+
+
